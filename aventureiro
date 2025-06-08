@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    // Cartas pré-definidas (dados fixos)
+    char pais1[] = "Brasil";
+    int populacao1 = 213000000;
+    float area1 = 8516.0f;
+    float pib1 = 1444.7f;
+    int pontosTuristicos1 = 100;
+    float densidade1 = populacao1 / area1;
+
+    char pais2[] = "Argentina";
+    int populacao2 = 45000000;
+    float area2 = 2780.4f;
+    float pib2 = 450.6f;
+    int pontosTuristicos2 = 50;
+    float densidade2 = populacao2 / area2;
+
+    int escolha;
+    float valor1 = 0.0f, valor2 = 0.0f;
+    char atributo[40];
+    int vencedor = 0;  // 0=empate, 1=carta1, 2=carta2
+
+    // Menu para o usuário escolher o atributo
+    printf("=== Super Trunfo - Escolha o atributo para comparar ===\n");
+    printf("1 - População\n");
+    printf("2 - Área\n");
+    printf("3 - PIB\n");
+    printf("4 - Número de Pontos Turísticos\n");
+    printf("5 - Densidade Demográfica\n");
+    printf("Digite sua escolha (1-5): ");
+    scanf("%d", &escolha);
+
+    // Validação e cálculo do atributo escolhido
+    switch (escolha) {
+        case 1:
+            strcpy(atributo, "População");
+            valor1 = (float)populacao1;
+            valor2 = (float)populacao2;
+            if (valor1 > valor2)
+                vencedor = 1;
+            else if (valor2 > valor1)
+                vencedor = 2;
+            break;
+
+        case 2:
+            strcpy(atributo, "Área");
+            valor1 = area1;
+            valor2 = area2;
+            if (valor1 > valor2)
+                vencedor = 1;
+            else if (valor2 > valor1)
+                vencedor = 2;
+            break;
+
+        case 3:
+            strcpy(atributo, "PIB");
+            valor1 = pib1;
+            valor2 = pib2;
+            if (valor1 > valor2)
+                vencedor = 1;
+            else if (valor2 > valor1)
+                vencedor = 2;
+            break;
+
+        case 4:
+            strcpy(atributo, "Número de Pontos Turísticos");
+            valor1 = (float)pontosTuristicos1;
+            valor2 = (float)pontosTuristicos2;
+            if (valor1 > valor2)
+                vencedor = 1;
+            else if (valor2 > valor1)
+                vencedor = 2;
+            break;
+
+        case 5:
