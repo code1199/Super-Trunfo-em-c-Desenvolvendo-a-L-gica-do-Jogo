@@ -1,0 +1,104 @@
+#include <stdio.h>
+
+int main() {
+    // Dados da Carta 1
+    char estado1[] = "SP";
+    char codigo1[] = "A01";
+    char nomeCidade1[] = "São Paulo";
+    int populacao1 = 12300000;
+    float area1 = 1521.11f;
+    float pib1 = 699.28f;  // em bilhões
+    int pontosTuristicos1 = 50;
+
+    // Dados da Carta 2
+    char estado2[] = "RJ";
+    char codigo2[] = "B02";
+    char nomeCidade2[] = "Rio de Janeiro";
+    int populacao2 = 6000000;
+    float area2 = 1200.25f;
+    float pib2 = 300.50f;  // em bilhões
+    int pontosTuristicos2 = 30;
+
+    // Cálculos
+    float densidadePop1 = (float)populacao1 / area1;
+    float densidadePop2 = (float)populacao2 / area2;
+
+    float pibPerCapita1 = (pib1 * 1000000000.0f) / populacao1; // PIB em reais dividido pela população
+    float pibPerCapita2 = (pib2 * 1000000000.0f) / populacao2;
+
+    // Escolha do atributo para comparação: 
+    // Opções: "populacao", "area", "pib", "densidade", "pibPerCapita"
+    // Troque aqui o atributo para comparar:
+    char atributoComparar[] = "pib"; 
+
+    float valor1 = 0.0f, valor2 = 0.0f;
+    int cartaVencedora = 0; // 1 = carta1 vence, 2 = carta2 vence, 0 = empate
+
+    // Seleciona valores do atributo escolhido
+    if (strcmp(atributoComparar, "populacao") == 0) {
+        valor1 = (float)populacao1;
+        valor2 = (float)populacao2;
+        if (valor1 > valor2) cartaVencedora = 1;
+        else if (valor2 > valor1) cartaVencedora = 2;
+    } else if (strcmp(atributoComparar, "area") == 0) {
+        valor1 = area1;
+        valor2 = area2;
+        if (valor1 > valor2) cartaVencedora = 1;
+        else if (valor2 > valor1) cartaVencedora = 2;
+    } else if (strcmp(atributoComparar, "pib") == 0) {
+        valor1 = pib1;
+        valor2 = pib2;
+        if (valor1 > valor2) cartaVencedora = 1;
+        else if (valor2 > valor1) cartaVencedora = 2;
+    } else if (strcmp(atributoComparar, "densidade") == 0) {
+        valor1 = densidadePop1;
+        valor2 = densidadePop2;
+        // Para densidade, menor vence
+        if (valor1 < valor2) cartaVencedora = 1;
+        else if (valor2 < valor1) cartaVencedora = 2;
+    } else if (strcmp(atributoComparar, "pibPerCapita") == 0) {
+        valor1 = pibPerCapita1;
+        valor2 = pibPerCapita2;
+        if (valor1 > valor2) cartaVencedora = 1;
+        else if (valor2 > valor1) cartaVencedora = 2;
+    } else {
+        printf("Atributo para comparação inválido.\n");
+        return 1;
+    }
+
+    // Impressão dos dados das cartas
+    printf("Carta 1 - %s (%s):\n", nomeCidade1, estado1);
+    printf("Populacao: %d\n", populacao1);
+    printf("Area: %.2f km2\n", area1);
+    printf("PIB: %.2f bilhoes\n", pib1);
+    printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos1);
+    printf("Densidade Populacional: %.2f hab/km2\n", densidadePop1);
+    printf("PIB per Capita: %.2f reais\n\n", pibPerCapita1);
+
+    printf("Carta 2 - %s (%s):\n", nomeCidade2, estado2);
+    printf("Populacao: %d\n", populacao2);
+    printf("Area: %.2f km2\n", area2);
+    printf("PIB: %.2f bilhoes\n", pib2);
+    printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos2);
+    printf("Densidade Populacional: %.2f hab/km2\n", densidadePop2);
+    printf("PIB per Capita: %.2f reais\n\n", pibPerCapita2);
+
+    // Resultado da comparação
+    printf("Comparacao de cartas (Atributo: %s):\n\n", atributoComparar);
+
+    if (cartaVencedora == 1) {
+        printf("Carta 1 (%s) venceu!\n", nomeCidade1);
+        printf("Valor da Carta 1: %.2f\n", valor1);
+        printf("Valor da Carta 2: %.2f\n", valor2);
+    } else if (cartaVencedora == 2) {
+        printf("Carta 2 (%s) venceu!\n", nomeCidade2);
+        printf("Valor da Carta 1: %.2f\n", valor1);
+        printf("Valor da Carta 2: %.2f\n", valor2);
+    } else {
+        printf("Empate!\n");
+        printf("Valor da Carta 1: %.2f\n", valor1);
+        printf("Valor da Carta 2: %.2f\n", valor2);
+    }
+
+    return 0;
+}
